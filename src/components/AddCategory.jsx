@@ -71,4 +71,24 @@ export const AddCategory = (props) => {
             handleCategory([ inputValue ]);
         }
     }
+
+    --| Refactorización |--
+    En este caso se tiene la siguiente función 
+    const onSubmit = (event) => {
+        event.preventDefault();
+        //console.log(inputValue);
+        //console.log(handleCategory);
+        if ( inputValue.trim().length <= 1 ) return; //Evitar que el usuario solo envie un caracter o ninguno dentro del input
+        handleCategory( categories => [ inputValue, ...categories]);
+        setInputValue(''); //Limpiar el valor del input
+    }
+    La cual tiene como proposito, recibir el objeto event, bloquear la actualizacion
+    y manipular el hook del componente padre (' GifExpertApp ') puesto que al pasar 
+    el hook de cambio, se tiene acceso al useState completo; en conclusión, enviamos
+    la data del hook al componente hijo para que emita un evento internamente y actualice
+    la data del hook del componente padre. 
+    A pesar de que es funcional, si se desea reutilizar este componente, nos encontramos
+    con el problema de que el componente va a estar actualizando la data del hook padre, 
+    por otro lado se oculta la implementación del componente y dificulta un poco el entendimiento
+    para solucionar esta situacion, se implementa la comunicación hijo padre
 */

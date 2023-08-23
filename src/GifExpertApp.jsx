@@ -30,5 +30,4 @@ export default GifExpertApp
 /**
     --| Map |--
     Metodo que crea un nuevo array a partir de los items de un array establecido
-
 */
