@@ -1,22 +1,20 @@
 import { useState } from 'react';
 
-export const AddCategory = (props) => {
-
-    const {handleCategory} = props;
+export const AddCategory = ({onNewCategory}) => {
 
     const [inputValue, setInputValue] = useState('');// usf
 
     const onInputChange = (event) => {
+        //Obtener el texto del input y pasarlo como valor
         //console.log(event.target.value);
         setInputValue(event.target.value);
     }
 
     const onSubmit = (event) => {
+        //Enviar el valor actual del componente input por medio de un evento
         event.preventDefault();
-        //console.log(inputValue);
-        //console.log(handleCategory);
         if ( inputValue.trim().length <= 1 ) return; //Evitar que el usuario solo envie un caracter o ninguno dentro del input
-        handleCategory( categories => [ inputValue, ...categories]);
+        onNewCategory( inputValue.trim() );
         setInputValue(''); //Limpiar el valor del input
     }
 
@@ -91,4 +89,8 @@ export const AddCategory = (props) => {
     con el problema de que el componente va a estar actualizando la data del hook padre, 
     por otro lado se oculta la implementación del componente y dificulta un poco el entendimiento
     para solucionar esta situacion, se implementa la comunicación hijo padre
+
+    --| onNewCategory( inputValue.trim() ); |--
+    nos permite enviar un valor de regreso a la property onNewCategory, en este caso se evita
+    el que contenga espacios a los extremos del valor.
 */
