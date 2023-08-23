@@ -10,15 +10,11 @@ import { AddCategory } from './components/AddCategory';
 function GifExpertApp() {
     const [categories, setCategories] = useState([ 'One Punch', 'Dragon Ball' ]);
     //console.log(categories);
-    const onAddCategory = () =>{
-        //console.log('Valorant');
-        setCategories(['Valorant',...categories]);
-    }
+
     return (
         <>
             <h1>GifExpertApp</h1>
-            <AddCategory/>
-            <button onClick={onAddCategory}>Agregar</button>
+            <AddCategory handleCategory={ setCategories }/>
             {/* CONSTRUCCIÓN DE MANERA DINAMICA */}
             <ol>
                 { categories.map( category =>{
@@ -31,8 +27,8 @@ function GifExpertApp() {
 
 export default GifExpertApp
 
-{/**
+/**
     --| Map |--
     Metodo que crea un nuevo array a partir de los items de un array establecido
 
-*/}
+*/

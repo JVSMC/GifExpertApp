@@ -1,6 +1,8 @@
 import { useState } from 'react';
 
-export const AddCategory = () => {
+export const AddCategory = (props) => {
+
+    const {handleCategory} = props;
 
     const [inputValue, setInputValue] = useState('');// usf
 
@@ -11,7 +13,11 @@ export const AddCategory = () => {
 
     const onSubmit = (event) => {
         event.preventDefault();
-        console.log(inputValue);
+        //console.log(inputValue);
+        //console.log(handleCategory);
+        if ( inputValue.trim().length <= 1 ) return; //Evitar que el usuario solo envie un caracter o ninguno dentro del input
+        handleCategory( categories => [ inputValue, ...categories]);
+        setInputValue(''); //Limpiar el valor del input
     }
 
     return (
@@ -40,4 +46,29 @@ export const AddCategory = () => {
 
     --| event.preventDefault() |--
     Evita que el navegador haga un refresh de la pagina web.
- */
+ 
+    --| destructuracion |--
+    Para pasar una property entre componentes, la menera sencilla
+    es haciendo una destructuración, en este caso pasamos una función
+    como porperti desde el componente GifExpertApp hacia el componente
+    hijo AddCategory.
+
+    Destructuracion 1
+    export const AddCategory = ({handleCategory}) => { 
+
+        const onSubmit = (event) => {
+            event.preventDefault();
+            handleCategory([ inputValue ]);
+        }
+    }
+
+    Destructuracion 2
+    export const AddCategory = (props) => { 
+        const {handleCategory} = props;
+
+        const onSubmit = (event) => {
+            event.preventDefault();
+            handleCategory([ inputValue ]);
+        }
+    }
+*/
