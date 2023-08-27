@@ -1,5 +1,6 @@
 import React, {useState} from 'react'// A partir de la versión 17 ya no se importa react por todos lados
 import { AddCategory } from './components/AddCategory';
+import { GifGrid } from './components/GifGrid';
 /**
  * Estructura
  * Título
@@ -13,7 +14,6 @@ function GifExpertApp() {
 
     const onAddCategory = (newCategory) => {
         //console.log(newCategory);
-        //if (categories.includes(newCategory)) return;
         if (categories.some(category => newCategory.toLowerCase() === category.toLowerCase())) return;
         setCategories([newCategory, ...categories]);
     }
@@ -26,11 +26,12 @@ function GifExpertApp() {
                 onNewCategory={ event => onAddCategory(event)}//on nos permite saber que el componente emite algo
             />
             {/* CONSTRUCCIÓN DE MANERA DINAMICA */}
-            <ol>
-                { categories.map( category =>{
-                    return <li key={category}>{category}</li>
-                } ) }
-            </ol>
+            { categories.map( category =>
+                    <GifGrid 
+                        key = {category}
+                        category = {category}
+                    />
+                ) }
         </>
     )
 }
