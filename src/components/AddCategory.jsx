@@ -12,7 +12,7 @@ export const AddCategory = ({onNewCategory}) => {
 
     const onSubmit = (event) => {
         //Enviar el valor actual del componente input por medio de un evento
-        event.preventDefault();
+        event.preventDefault(); //Evitamos la actualización despues de enviar el formulario
         if ( inputValue.trim().length <= 1 ) return; //Evitar que el usuario solo envie un caracter o ninguno dentro del input
         onNewCategory( inputValue.trim() );
         setInputValue(''); //Limpiar el valor del input

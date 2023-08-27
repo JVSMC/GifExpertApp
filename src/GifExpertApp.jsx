@@ -13,6 +13,8 @@ function GifExpertApp() {
 
     const onAddCategory = (newCategory) => {
         //console.log(newCategory);
+        //if (categories.includes(newCategory)) return;
+        if (categories.some(category => newCategory.toLowerCase() === category.toLowerCase())) return;
         setCategories([newCategory, ...categories]);
     }
 
