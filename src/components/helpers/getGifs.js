@@ -18,4 +18,8 @@ export const getGifs = async( category ) =>{
  * Esta función es código nativo de JS, sin embargo nos permite el 
  * interactuar con nuestra API, el url se extra con ayuda de Postman
  * y poder configurar correctamente el Endpoint de la API
+ * 
+ * Esto permite retornar un array que contiene 10 objetos con la siguiente
+ * información:
+ * id, title y url
  */

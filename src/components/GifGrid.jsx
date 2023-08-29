@@ -3,17 +3,26 @@ import { getGifs } from "./helpers/getGifs"
 
 export const GifGrid = ({ category }) => {
 
-    const [counter, setCounter] = useState(10);
+    const [images, setImages] = useState([]);
+
+    const getImages = async() =>{
+        const newImages = await getGifs(category);
+        //console.log(newImages[0].title);
+        setImages(newImages);
+    }
 
     useEffect(() => {
-        getGifs( category );
+        getImages();
     }, []);
 
     return (
         <>
             <h3>{category}</h3>
-            <h5>{counter}</h5>
-            <button onClick={()=> setCounter(counter + 1)}>+ 1</button>
+            <ol>
+               {images.map( categoryGif =>
+                    <li key = {categoryGif.id}>{categoryGif.title}</li>
+                )}
+            </ol>
         </>
     )
 }
@@ -31,4 +40,12 @@ export const GifGrid = ({ category }) => {
  * A pesar de hacer uso del useEffect, se sigue disparando 2 veces cada petición,
  * esto solo pasa en el entorno de desarrollo, esto se debe a la etiqueta React.StrictMode
  * que se encuentra en el archivo principal.
+ * 
+ * --| Refactorización |--
+ * Para acceder al contenido proporcionado por images del hooks useState
+ * se puede simplificar de la siguiente manera
+ * 
+ *  {images.map( ({id, tittle}) =>
+        <li key = {id}>{title}</li>
+    )}
  */
