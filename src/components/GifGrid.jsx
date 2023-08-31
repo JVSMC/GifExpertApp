@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { getGifs } from "./helpers/getGifs"
+import { GifItem } from "./GifItem";
 
 export const GifGrid = ({ category }) => {
 
@@ -18,11 +19,16 @@ export const GifGrid = ({ category }) => {
     return (
         <>
             <h3>{category}</h3>
-            <ol>
-               {images.map( categoryGif =>
-                    <li key = {categoryGif.id}>{categoryGif.title}</li>
+            <div className="card-grid">
+               {images.map( ({id, title, url}) =>
+                    // <li key = {categoryGif.id}>{categoryGif.title}</li>
+                    <GifItem
+                        key = {id}
+                        gifsTitle = {title}
+                        gifsUrl = {url}
+                    />
                 )}
-            </ol>
+            </div>
         </>
     )
 }
@@ -41,11 +47,13 @@ export const GifGrid = ({ category }) => {
  * esto solo pasa en el entorno de desarrollo, esto se debe a la etiqueta React.StrictMode
  * que se encuentra en el archivo principal.
  * 
- * --| Refactorización |--
- * Para acceder al contenido proporcionado por images del hooks useState
- * se puede simplificar de la siguiente manera
+ * --| Previo a Refactorizacion |--
+ * Previo a la refactorizacion, se tenia el siguiente codigo
  * 
- *  {images.map( ({id, tittle}) =>
-        <li key = {id}>{title}</li>
+    {images.map( categoryGif =>
+        <li key = {categoryGif.id}>{categoryGif.title}</li>
     )}
+
+    --| Refactorización 2 |--
+
  */
