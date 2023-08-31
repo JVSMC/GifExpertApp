@@ -1,6 +1,8 @@
 import React, {useState} from 'react'// A partir de la versión 17 ya no se importa react por todos lados
-import { AddCategory } from './components/AddCategory';
-import { GifGrid } from './components/GifGrid';
+// import { AddCategory } from './components/AddCategory';
+// import { GifGrid } from './components/GifGrid';
+import { AddCategory, GifGrid } from './components'; //Esta integración se hace por los archivos de barril
+
 /**
  * Estructura
  * Título
