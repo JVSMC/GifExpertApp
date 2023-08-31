@@ -1,21 +1,16 @@
-import { useEffect, useState } from "react";
-import { getGifs } from "./helpers/getGifs"
+// import { useEffect, useState } from "react";
+
 import { GifItem } from "./GifItem";
+import { useFetchGifs } from "../hooks/useFetchGifs";
+// import { getGifs } from "../helpers/getGifs"
 
 export const GifGrid = ({ category }) => {
 
-    const [images, setImages] = useState([]);
-
-    const getImages = async() =>{
-        const newImages = await getGifs(category);
-        //console.log(newImages[0].title);
-        setImages(newImages);
-    }
-
-    useEffect(() => {
-        getImages();
-    }, []);
-
+    //Hook personalizado
+    const { images, isLoading } = useFetchGifs( category );
+    //Verificar el funcionamiento del customHook
+    //console.log({ images, isLoading });
+    
     return (
         <>
             <h3>{category}</h3>
@@ -39,21 +34,10 @@ export const GifGrid = ({ category }) => {
  * tiene un cambio y/o es invocado, React vuelve a dibujar dicho componente
  * haciendo que el llamado de la función getGifs, se vuelva a ejecutar.
  * 
- * --|useEfect|--
- * Con el useEfect, podemos renderizar la función getGifs solo una vez, sin importar que
- * nuestro componente se actualice, por eso el segundo argumento del useEffect es un
- * juego de corchetes vacios.
- * A pesar de hacer uso del useEffect, se sigue disparando 2 veces cada petición,
- * esto solo pasa en el entorno de desarrollo, esto se debe a la etiqueta React.StrictMode
- * que se encuentra en el archivo principal.
- * 
  * --| Previo a Refactorizacion |--
  * Previo a la refactorizacion, se tenia el siguiente codigo
  * 
     {images.map( categoryGif =>
         <li key = {categoryGif.id}>{categoryGif.title}</li>
     )}
-
-    --| Refactorización 2 |--
-
  */
