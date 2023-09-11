@@ -18,7 +18,7 @@ describe('Pruebas en <GifItem/>', () => {
         const { src, alt } = screen.getByRole('img');//3.-
         
         expect( src ).toBe( url );
-        expect( src ).toBe( title );
+        expect( alt).toBe( title );
     });
 
     test('evaluar que exista el titulo de la imagen en texto', () => {
