@@ -4,12 +4,30 @@ import { AddCategory } from '../../src/components/AddCategory';
 describe('Pruebas en AddCategory', () => {
     test('debe de cambiar el valor de la caja de texto', () => {
         
-        render( <AddCategory onNewCategory={ ()=>{} }/> )
+        render( <AddCategory onNewCategory={ ()=>{} }/> );
         // screen.debug();
         const input = screen.getByRole('textbox');//1.-
         fireEvent.input( input, { target:{ value: 'Saitama' } } );//2.-
         
         expect( input.value ).toBe('Saitama');
+    });
+
+    test('debe llamar onNewCategory si el input tiene un valor', () => {
+        const inputValue = 'Saitama';
+
+        render( <AddCategory onNewCategory={ ()=>{} }/> );
+
+        const input = screen.getByRole('textbox');
+        const form = screen.getByRole('form');
+
+        //Se establece el valor al input
+        fireEvent.input( input, { target:{ value: inputValue } } );
+        
+        fireEvent.submit( form );
+        //screen.debug();
+
+        //Verificamos que el valor del input regrese a un estado vacio  
+        expect( input.value ).toBe('');
     });
 });
 /**

@@ -12,6 +12,7 @@ export const AddCategory = ({onNewCategory}) => {
     }
 
     const onSubmit = (event) => {
+        //console.log('Hola mundo desde el submit');
         //Enviar el valor actual del componente input por medio de un evento
         event.preventDefault(); //Evitamos la actualización despues de enviar el formulario
         if ( inputValue.trim().length <= 1 ) return; //Evitar que el usuario solo envie un caracter o ninguno dentro del input
@@ -20,7 +21,7 @@ export const AddCategory = ({onNewCategory}) => {
     }
 
     return (
-        <form onSubmit={(event) => onSubmit(event)}>
+        <form onSubmit={(event) => onSubmit(event)} aria-label="form">
             <input type="text" 
                 placeholder="Buscar gif"
                 value={ inputValue }
