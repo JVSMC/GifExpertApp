@@ -1,8 +1,9 @@
 <h1 align="center">Hi 👋, This is my project GifExpertApp</h1>
 <p align="left"> <img src="https://komarev.com/ghpvc/?username=jvsmc&label=Profile%20views&color=0e75b6&style=flat" alt="jvsmc" /> </p>
 
-<h3 align="left">Connect with me:</h3>
+<h3 align="left">Visit my project: </h3>
 <p align="left">
+    <a>https://jvsmc.github.io/GifExpertApp/</a>
 </p>
 
 <h3 align="left">Languages and Tools:</h3>
