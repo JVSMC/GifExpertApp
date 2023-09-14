@@ -1,4 +1,4 @@
-import { renderHook } from "@testing-library/react";
+import { renderHook, waitFor } from "@testing-library/react";
 import { useFetchGifs } from "../../src/hooks/useFetchGifs";
 
 describe('Pruebas en hook useFetchGifs', () => {
@@ -9,5 +9,20 @@ describe('Pruebas en hook useFetchGifs', () => {
 
         expect(images.length).toBe(0);
         expect( isLoading ).toBeTruthy();
+    });
+    test('debe de regresar un arreglo de imagenes y isLoading en false', async() => {
+        
+        const { result } = renderHook( () => useFetchGifs('One Punch') );
+        
+        await waitFor(
+            //Esperar a que el resultado de images current sea mayour a 0
+            ()=> expect( result.current.images.length ).toBeGreaterThan(0)
+            
+        );
+        
+        const {images, isLoading} = result.current;
+
+        expect(images.length).toBeGreaterThan(0);
+        expect( isLoading ).toBeFalsy();
     });
 });
