@@ -3,7 +3,7 @@
 
 <h3 align="left">Visit my project: </h3>
 <p align="left">
-    <a>https://jvsmc.github.io/GifExpertApp/</a>
+    <a href = "https://jvsmc.github.io/GifExpertApp/">https://GifExpertApp</a>
 </p>
 
 <h3 align="left">Languages and Tools:</h3>
